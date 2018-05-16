@@ -1,0 +1,72 @@
+$gray:                   #818387;
+$black:                  #000; // #000 
+$gray-base:              #818387 !default;
+$gray-darkest:           #333;
+$gray-notify:            #A29C9E;
+$white:                  #fff;
+
+.option-value.out-of-stock{
+	background:unset;
+}
+
+.notify-preorder-option{
+    display: block;
+    padding: 10px;
+}
+
+#wishlist-form{
+	margin:10px;
+}
+
+table#wishlist {
+    margin-bottom: 20px;
+    img{
+		padding: 5px;
+	}
+	div#cart-form {
+	    border-top: none;
+	}
+}
+
+span.notify-preorder-option{
+    background-color: $gray-darkest;
+    color: $white;
+    padding: 10px;
+    display: block;
+    margin: 5px 0px;
+    text-align: center;
+}
+
+#products li{
+	position:relative;
+}
+
+span.sold-out{
+    position: absolute;
+    font-weight: 100;
+    font-size: 60px;
+    font-family: 'Unicorn-Calligraphy';
+    top: 45%;
+    z-index: 2;
+    color: $white;
+    width: 100%;
+    -webkit-transform: rotate(-30deg);
+    -moz-transform: rotate(-30deg);
+    -ms-transform: rotate(-30deg);
+    -o-transform: rotate(-30deg);
+    text-align: center;    
+}
+
+span.pre-order-notify{
+    position: absolute;
+    top: unset;
+    bottom:100px;
+    left: 0;
+    right: 0;
+    padding: 2px;
+    text-align: center;
+    color: $white;
+    width: 100%;
+    text-transform: uppercase;
+    z-index: 2;
+}

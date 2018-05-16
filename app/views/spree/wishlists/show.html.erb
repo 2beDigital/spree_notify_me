@@ -1,0 +1,77 @@
+<div id="wishlist_header" class="row">
+  <h1><%= @wishlist.name %></h1>
+</div>
+<table id="wishlist">
+  <thead>
+    <tr>
+      <% if @wishlist.user == spree_current_user %>
+        <th class='col-md-2'><%= Spree.t(:wishlist_actions) %></th>
+      <% end -%>
+      <th class='col-md-2'><%= Spree.t(:item_view) %></th>
+      <th class='col-md-4 hidden-xs'><%= Spree.t(:item_description) %></th>
+      <th class='col-md-1'><%= Spree.t(:availability) %></th>
+      <th class='col-md-2'><%= Spree.t(:date_added) %></th>
+      <th class='col-md-1'><%= Spree.t(:price) %></th>
+    </tr>
+  </thead>
+  <tbody id="line_items">
+  <% if @wishlist.wished_products.size > 0 %>
+    <% @wishlist.wished_products.each do |wish|
+        variant = wish.variant
+        product = variant.product %>
+    <tr class="<%= cycle('', 'alt') %>">
+    <% if @wishlist.user == spree_current_user %>
+      <td class='col-md-2'>
+        <p><%= link_to Spree.t(:remove_from_wishlist), wish, :method => :delete %></p>
+        <div id="cart-form">
+          <%= form_for :order, :url => spree.populate_orders_url, remote: true do |f| %>
+            <%= hidden_field_tag "variant_id", variant.id, :size => 3 %>
+            <%= hidden_field_tag "quantity", 1, :size => 3 %>
+            <% if variant.can_supply? %>
+              <%= link_to Spree.t(:add_to_cart), '#', :id => 'add-to-cart-button', :onclick => "$(this).parent().submit(); return false;" %>
+             <% end %>
+          <% end %>
+        </div>
+        <% if spree_current_user.wishlists.count > 1 %>
+          <%= Spree.t(:move_to_another_wishlist) %>:
+          <%= form_for wish do |f| %>
+            <%= f.select :wishlist_id, spree_current_user.wishlists.map{|wl| [wl.name, wl.id]} %>
+            <%= f.submit Spree.t(:move) %>
+          <% end %>
+        <% end %>
+        <br />
+      </td>
+    <% end -%>
+      <td class='col-md-2'>
+        <% if variant.images.length == 0 %>
+          <%= small_image(variant.product) %>
+        <% else %>
+          <%= image_tag variant.images.first.attachment.url(:small) %>
+        <% end %>
+      </td>
+      <td class='col-md-4 hidden-xs'>
+        <h4><%= link_to product.name, product %></h4>
+        <p><%= variant_options variant %></p>
+        <%= product_description(product) %>
+      </td>
+      <td class='col-md-1'>
+        <%= variant.can_supply? ? Spree.t(:in_stock) : Spree.t(:out_of_stock) %>
+      </td>
+      <td class='col-md-2'>
+        <%= wish.created_at.strftime "%m/%d/%Y" %>
+      </td>
+      <td class='col-md-1'>
+        <%= display_price(variant) %>
+      </td>
+    </tr>
+    <% end -%>
+  <% else -%>
+    <tr>
+      <td colspan="6"><%= Spree.t(:your_wishlist_is_empty) %></td>
+    </tr>
+  <% end -%>
+  </tbody>
+</table>
+<div class="footer_links" data-hook="wishlist_footer_links">
+<%= link_to Spree.t(:continue_shopping), seo_url(Spree::Taxon.first), :class => "btn btn-success" %>
+</div>

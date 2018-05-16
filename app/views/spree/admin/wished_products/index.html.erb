@@ -1,0 +1,43 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:wished_products) %>
+<% end %>
+
+
+<%= render :partial => 'spree/admin/shared/product_sub_menu' %>
+
+<%= paginate @collection %>
+
+<% if @collection.any? %>
+  <table class="index" id="listing_widhed_products">
+    <colgroup>
+       <col style="width: 15%;">
+       <col style="width: 10%;">
+       <col style="width: 48%;">
+       <col style="width: 10%;">
+       <col style="width: 17%;">
+    </colgroup>
+    <thead>
+      <tr data-hook="admin_products_index_headers">
+        <th><%= Spree.t(:sku) %></th>
+        <th colspan="2"><%= Spree.t(:name) %></th>
+        <th><%= Spree.t(:times_wished) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @collection.each do |wished_product| %>
+          <tr id="<%= spree_dom_id wished_product %>" data-hook="admin_products_index_rows" class="<%= cycle('odd', 'even') %>">
+            <td class="align-center"><%= wished_product.variant.sku rescue '' %></td>
+            <td class="align-center"><%= mini_image(wished_product.variant.product) %></td>
+            <td><%= link_to wished_product.variant.product.try(:name), edit_admin_product_path(wished_product.variant.product) %></td>
+            <td class="align-center"><%= wished_product.times_wished %></td>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alpha twelve columns no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: I18n.t(:other, scope: 'activerecord.models.spree/product')) %>
+  </div>
+<% end %>
+
+<%= paginate @collection %>

@@ -1,0 +1,30 @@
+<table id="order_detail">
+  <tr>
+    <td>
+      <p class="lede">
+        <%= Spree.t('stock_mailer.notify_users_email.dear_customer') %>
+      </p>
+      <p>
+        <%= Spree.t('stock_mailer.notify_users_email.instructions') %>
+      </p>
+      <table id="show_order">
+          <tr>
+            <td class="variant_sku">
+              <% if @variant.images.length == 0 %>
+                    <% unless @variant.product.images.empty? %>
+                      <%= link_to image_tag(@variant.product.images.first.attachment.url(:small)),( store_url + product_path(@variant.product) ) %>
+                    <% end %>                     
+                  <% else %>
+                      <%= link_to image_tag(@variant.images.first.attachment.url(:small)), ( store_url + product_path(@variant.product) ) %>
+                  <% end %>
+            </td>
+            <td><%= @variant.product.name %></td>
+            <td><%= @variant.options_text %></td>
+          </tr>
+      </table>
+      <p class="center">
+        <%= Spree.t('stock_mailer.notify_users_email.thanks') %>
+      </p>
+    </td>
+  </tr>
+</table>

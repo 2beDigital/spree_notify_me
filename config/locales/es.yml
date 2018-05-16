@@ -1,0 +1,25 @@
+es:
+  spree:
+    wished_products: Productos deseados
+    times_wished: Veces deseado
+    sold_out: Sold out
+    featured_product: Producto destacado
+    notify_preorder_option: "Este producto aún no está disponible, reservalo y te lo enviaremos cuando este disponible."
+    notify_me_text: "No disponemos de stock para este producto, añadelo a tu lista de deseos y te notificaremos cuando este disponible."
+    notify_me: 'Avísame'
+    pre_order: 'Pre-order'
+    preorder: '¿Activar Reserva?'
+    products_preorder: 'ATENCIÓN: Pedido con productos reservados.'
+    shipment_product_pre_order: 'Producto reservado, envío pendiente de disponibilidad.'
+    stock_mailer:
+      notify_users_email:
+        instructions: El producto que habia solicitado ya esta disponible en la web.
+        thanks: Muchas gracias.
+        dear_customer: Estimado cliente,
+    wished_product_added: producto añadido a tu lista de deseos.
+    wished_product_available: producto ya disponible en nuestra tienda.
+    wished_product:
+      notify_user:
+        instructions: El producto ha sido añadido a su lista de deseos.
+        thanks: Muchas gracias.
+        dear_customer: Estimado cliente,

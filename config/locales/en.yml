@@ -1,0 +1,21 @@
+en:
+  spree:
+    sold_out: Sold out
+    notify_preorder_option: "This product is not available yet, reserve it and we will send it to you as soon as it is available."
+    notify_me_text: "We do not have stock for this product, add it to your wish list and we will notify you when it is available."
+    notify_me: 'Notify me'
+    pre_order: 'Pre-order'
+    shipment_product_pre_order: Pre-ordered product, pending shipment of availability.
+    products_backorders: 'Pre-order products'
+    stock_mailer:
+      notify_users_email:
+        instructions: The product you have requested is already available on our website.
+        thanks: Thanks.
+        dear_customer: Dear customer,
+    wished_product_added: the product has been added to your wish list.
+    wished_product_available: product available on our shop.
+    wished_product:
+      notify_user:
+        instructions: The product has been added to your wish list.
+        thanks: Thanks.
+        dear_customer: Dear customer,
